@@ -1,33 +1,21 @@
-## Location of this script
-thisFile <- function() {
-        cmdArgs <- commandArgs(trailingOnly = FALSE)
-        needle <- "--file="
-        match <- grep(needle, cmdArgs)
-        if (length(match) > 0) {
-                # Rscript
-                return(normalizePath(sub(needle, "", cmdArgs[match])))
-        } else {
-                # 'source'd via R console
-                return(normalizePath(sys.frames()[[1]]$ofile))
-        }
-}
-
-## Where are various directories?
-file.loc <- dirname(thisFile())
+file.loc <- "."
 proj.dir <- "~/RTM"
 
 args <- commandArgs(trailingOnly = TRUE)
 if (length(args) < 2) {
-	date.data <- (today() - days(1)) %>% format("%Y%m%d"
+	date.data <- format(lubridate::today() - lubridate::days(1), "%Y%m%d")
 	regions <- c("East_of_England", "London", "Midlands",
 									  "North_East_and_Yorkshire", "North_West",
 									  "South_East", "South_West")
 	nr <- length(regions)
 }
 source(file.path(proj.dir, "config.R"))
-source(file.path(proj.dir, "R/data/utils.R"))
 
 Rfile.loc <- file.path(proj.dir, "R/output")
 
 rmarkdown::render(file.path(Rfile.loc, 'report-updated.Rmd'), output_dir = file.loc,
-				  clean = FALSE, intermediates_dir = file.loc)
+				  clean = FALSE, intermediates_dir = file.loc,
+				  output_options = list(
+	mathjax = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
+					),
+				  output_file = paste0(date.data, ".html"))
