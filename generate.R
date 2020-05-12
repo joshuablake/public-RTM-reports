@@ -11,8 +11,10 @@ if (length(args) < 2) {
 }
 source(file.path(proj.dir, "config.R"))
 
-index_file <- file.path(file.loc, "index.html")
-output_file <- file.path(file.loc, paste0(date.data, ".html"))
+wd <- getwd()
+setwd(file.loc)
+index_file <- "index.html"
+output_file <- paste0(date.data, ".html")
 rmarkdown::render(file.path(Rfile.loc, 'report-updated.Rmd'), output_dir = file.loc,
 				  clean = FALSE, intermediates_dir = file.loc,
 				  output_options = list(
@@ -20,5 +22,7 @@ rmarkdown::render(file.path(Rfile.loc, 'report-updated.Rmd'), output_dir = file.
 					),
 				  output_file = output_file)
 
+
 system(paste("rm", index_file))
 system(paste("ln -s", output_file, index_file))
+setwd(wd)
