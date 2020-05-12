@@ -1,4 +1,4 @@
-file.loc <- "."
+file.loc <- "~/public-RTM-reports/"
 proj.dir <- "~/RTM"
 
 args <- commandArgs(trailingOnly = TRUE)
@@ -11,11 +11,14 @@ if (length(args) < 2) {
 }
 source(file.path(proj.dir, "config.R"))
 
-Rfile.loc <- file.path(proj.dir, "R/output")
-
+index_file <- file.path(file.loc, "index.html")
+output_file <- file.path(file.loc, paste0(date.data, ".html"))
 rmarkdown::render(file.path(Rfile.loc, 'report-updated.Rmd'), output_dir = file.loc,
 				  clean = FALSE, intermediates_dir = file.loc,
 				  output_options = list(
 	mathjax = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
 					),
-				  output_file = paste0(date.data, ".html"))
+				  output_file = output_file)
+
+system(paste("rm", index_file))
+system(paste("ln -s", output_file, index_file))
