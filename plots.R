@@ -48,7 +48,8 @@ make.plots <- function(projections, ylab = "", data = NULL, y.format = ".3s") {
     plot_ly(x = ~date, width = 800, height = plot.height) %>%
     add_ribbons(ymin = ~`0.025`, ymax = ~`0.975`, color = I("lightblue2"), alpha = 0.25) %>%
     add_lines(y = ~`0.5`, color = I("black")) %>%
-    layout(shapes = lines, showlegened = FALSE)
+    layout(shapes = lines, showlegend = FALSE, xaxis = list(title = "Date"),
+           yaxis = list(title = ylab))
   if (is.null(data)) return(plot)
   plot %>%
     add_markers(
@@ -59,5 +60,5 @@ make.plots <- function(projections, ylab = "", data = NULL, y.format = ".3s") {
     )
 }
 
-make.plots(infections)
-make.plots(noisy_deaths, data = dth.dat)
+make.plots(infections, ylab = "Number of infections")
+make.plots(noisy_deaths, data = dth.dat, ylab = "Number of deaths")
