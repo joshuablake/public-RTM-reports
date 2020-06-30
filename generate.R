@@ -1,5 +1,5 @@
-file.loc <- "~/public-RTM-reports/"
-proj.dir <- "~/RTM"
+## proj.dir <- "~/RTM"
+proj.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20200629/base_varnewserology6day_matrices_20200626_deaths"
 
 args <- commandArgs(trailingOnly = TRUE)
 if (length(args) < 2) {
@@ -9,13 +9,14 @@ if (length(args) < 2) {
 									  "South_East", "South_West")
 	nr <- length(regions)
 }
-source(file.path(proj.dir, "config.R"))
+load(file.path(proj.dir, "tmp.RData"))
+file.loc <- "/project/pandemic_flu/Wuhan_Coronavirus/public-RTM-reports/"
 
 wd <- getwd()
 setwd(file.loc)
 index_file <- "iframe.html"
 output_file <- paste0(date.data, ".html")
-rmarkdown::render(file.path(Rfile.loc, 'report-updated.Rmd'), output_dir = file.loc,
+rmarkdown::render(file.path(proj.dir, 'R/output/report-updated.Rmd'), output_dir = file.loc,
 				  clean = FALSE, intermediates_dir = file.loc,
 				  output_options = list(
 	mathjax = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
