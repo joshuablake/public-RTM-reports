@@ -1,5 +1,5 @@
 ## proj.dir <- "~/RTM"
-proj.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20200629/base_varnewserology6day_matrices_20200626_deaths"
+proj.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20200703/base_6day_matrices_20200626_deaths"
 
 args <- commandArgs(trailingOnly = TRUE)
 if (length(args) < 2) {
