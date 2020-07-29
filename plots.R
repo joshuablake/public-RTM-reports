@@ -1,26 +1,31 @@
+library(lubridate)
 library(plotly)
-file.loc <- "~/public-RTM-reports/"
-proj.dir <- "~/RTM"
 
+out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20200724/base_varSens6day_matrices_20200717_deaths"
+plot.dir <- "~/COVID/BSU_website_plots/"
+external <- TRUE
 
-args <- commandArgs(trailingOnly = TRUE)
-if (length(args) < 2) {
-  date.data <- format((lubridate::today() - lubridate::days(1)), "%Y%m%d")
-  regions <- c("East_of_England", "London", "Midlands",
-               "North_East_and_Yorkshire", "North_West",
-               "South_East", "South_West")
-  nr <- length(regions)
+load(file.path(out.dir, "tmp.RData"))
+source(file.path(out.dir, "results_api.R"))
+
+QUANTILES <- c(0.025, 0.5, 0.975)
+dth.dat <- filter(dth.dat, date <= ymd(date.data) - reporting.delay)
+
+title <- function(name) {
+  list(
+    text = str_replace_all(name, "_", " "),
+    xref = "paper",
+    yref = "paper",
+    yanchor = "top",
+    xanchor = "left",
+    x = 0.1,
+    y = 0.9,
+    font = list(size = 20),
+    showarrow = FALSE
+  )
 }
-source(file.path(proj.dir, "config.R"))
-Rfile.loc <- file.path(proj.dir, "R/output")
-source(file.path(Rfile.loc, "results_api.R"))
-QUANTILES = c(0.025, 0.5, 0.975)
 
-make.plots <- function(projections, ylab = "", data = NULL, y.format = ".3s") {
-  Eng_projection <- sum.all(projections) %>% add.quantiles(NULL, QUANTILES)
-  Eng_data <- sum.all.data(data)
-  plot.height <- 420 + 150
-  date <- ymd(date.data)
+create.base.subplot <- function(data, num.rows, subplot_title) {
   lines <- list(
     list(
       type = "line", 
@@ -41,24 +46,108 @@ make.plots <- function(projections, ylab = "", data = NULL, y.format = ".3s") {
       x1 = ymd(20200323), 
       line = list(color = "blue"),
       hoverinfo = "Lockdown"
+    ),
+    list(
+      type = "line", 
+      y0 = 0, 
+      y1 = 1, 
+      yref = "paper",
+      x0 = ymd(20200511), 
+      x1 = ymd(20200511), 
+      line = list(color = "blue"),
+      hoverinfo = "Lockdown"
     )
   )
-  plot <- Eng_projection %>%
-    pivot_wider(names_from = quantile) %>%
-    plot_ly(x = ~date, width = 800, height = plot.height) %>%
-    add_ribbons(ymin = ~`0.025`, ymax = ~`0.975`, color = I("lightblue2"), alpha = 0.25) %>%
-    add_lines(y = ~`0.5`, color = I("black")) %>%
-    layout(shapes = lines, showlegend = FALSE, xaxis = list(title = "Date"),
-           yaxis = list(title = ylab))
-  if (is.null(data)) return(plot)
-  plot %>%
-    add_markers(
-      data = Eng_data,
-      x = ~date,
-      y = ~True,
-      color = I("red"),
-    )
+  plot.height <- num.rows * 420 + 150
+  return(
+    plot_ly(data, x = ~date, width = 800, height = plot.height) %>%
+      layout(shapes = lines, annotations = title(subplot_title), showlegend = FALSE,
+             hovermode = "x unified")
+  )
 }
 
-make.plots(infections, ylab = "Number of infections")
-make.plots(noisy_deaths, data = dth.dat, ylab = "Number of deaths")
+make.plots <- function(projections, ylab = "", by = NULL, data = NULL,
+                       y.format = ".3s", combine.to.England = sum.all,
+                       combine.data.to.England = sum.all.data,
+                       project.forwards = !is.null(data), x.label = "") {
+  
+  if (is.null(combine.to.England)) {
+    Eng_projection <- Eng_data <- NULL
+  } else {
+    Eng_projection <- combine.to.England(projections) %>% add.quantiles(NULL, QUANTILES)
+    Eng_data <- combine.data.to.England(data)
+  }
+  projections <- get.aggregated.quantiles(projections, by, c(0.025, 0.5, 0.975)) %>%
+    rename(by = all_of(by))
+  if (!project.forwards) {
+    if (!is.null(Eng_projection)) {
+      Eng_projection <- filter(Eng_projection, date <= ymd(date.data))
+    }
+    projections <- filter(projections, date <= ymd(date.data))
+  }
+  plot.names <- unique(projections$by)
+  num.plots <- length(plot.names)
+  if (!is.null(Eng_projection)) num.plots <- num.plots + 1
+  num.rows <- ceiling(num.plots/2)
+  date <- ymd(date.data)
+  create.subplot <- function(projections, subplot_title, data) {
+    plot <- projections %>%
+      pivot_wider(names_from = quantile) %>%
+      create.base.subplot(num.rows, subplot_title) %>%
+      add_ribbons(ymin = ~`0.025`, ymax = ~`0.975`, color = I("lightblue2"), alpha = 0.25,
+                  hovertemplate = paste0("%{x}: %{y:", y.format, "}<extra>Upper 95% CrI</extra>")) %>%
+      add_lines(y = ~`0.025`, alpha = 0,   # An extra trace just for hover text
+                hovertemplate = paste0("%{x}: %{y:", y.format, "}<extra>Lower 95% CrI</extra>")) %>%
+      add_lines(y = ~`0.5`, color = I("black"),
+                hovertemplate = paste0("%{x}: %{y:", y.format, "}<extra>Median</extra>")) %>%
+      layout(xaxis = list(title = x.label))
+    if (is.null(data)) {
+      return(plot)
+    } else {
+      if (external) {
+        data.hover <- "%{x} <extra>Observed deaths</extra>"
+      } else {
+        data.hover <- "%{x}: %{y:.3s}<extra>Observed deaths</extra>"
+      }
+      plot %>%
+        add_markers(
+          data = data,
+          x = ~date,
+          y = ~True,
+          color = I("red"),
+          hovertemplate = data.hover
+        )
+    }
+  }
+  plots <- NULL
+  if (!is.null(Eng_projection)) plots <- list("England" = create.subplot(Eng_projection, "England", Eng_data))
+  for(subplot in plot.names) {
+    if (is.null(data)) {
+      plot.data <- NULL
+    } else {
+      plot.data <- data %>%
+        filter(!!sym(by) == subplot) %>%
+        group_by(date) %>%
+        summarise(True = sum(value))
+    }
+    plots[[subplot]] <- projections %>%
+      filter(by == subplot) %>%
+      create.subplot(subplot, plot.data)
+  }
+  return(subplot(plots, nrows = num.rows))
+}
+
+
+run.plots <- function() {
+  infections %>%
+    make.plots(ylab = "Number of infections") %>%
+    orca(paste0(date.data, "_infections.png"))
+  
+  noisy_deaths %>%
+    make.plots(data = dth.dat, ylab = "Number of deaths") %>%
+    orca(paste0(date.data, "_deaths.png"))
+}
+# Use withr::with_dir as a workaround becase Orca doesn't support paths to files
+# See: https://github.com/ropensci/plotly/issues/1310#issuecomment-428203982
+withr::with_dir(plot.dir, run.plots())
+
