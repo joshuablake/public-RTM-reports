@@ -6,6 +6,7 @@ file.loc <- "/project/pandemic_flu/Wuhan_Coronavirus/public-RTM-reports/"
 
 wd <- getwd()
 setwd(file.loc)
+external <- TRUE
 index_file <- "iframe.html"
 output_file <- paste0(date.data, ".html")
 rmarkdown::render(file.path(proj.dir, 'R/output/report-updated.Rmd'), output_dir = file.loc,
