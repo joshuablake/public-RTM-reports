@@ -1,5 +1,5 @@
 ## proj.dir <- "~/RTM"
-out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20200724/base_varSens6day_matrices_20200717_deaths"
+out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20200731/base_varSens6day_matrices_20200724_deaths"
 
 load(file.path(out.dir, "tmp.RData"))
 file.loc <- "/project/pandemic_flu/Wuhan_Coronavirus/public-RTM-reports/"
