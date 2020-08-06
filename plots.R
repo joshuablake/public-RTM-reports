@@ -1,12 +1,14 @@
 library(lubridate)
 library(plotly)
 
-out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20200724/base_varSens6day_matrices_20200717_deaths"
+out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20200731/base_varSens6day_matrices_20200724_deaths"
 plot.dir <- "~/COVID/BSU_website_plots/"
 external <- TRUE
 
 load(file.path(out.dir, "tmp.RData"))
 source(file.path(out.dir, "results_api.R"))
+
+orca.fn <- orca
 
 QUANTILES <- c(0.025, 0.5, 0.975)
 dth.dat <- filter(dth.dat, date <= ymd(date.data) - reporting.delay)
@@ -141,11 +143,11 @@ make.plots <- function(projections, ylab = "", by = NULL, data = NULL,
 run.plots <- function() {
   infections %>%
     make.plots(ylab = "Number of infections") %>%
-    orca(paste0(date.data, "_infections.png"))
+    orca.fn(paste0(date.data, "_infections.png"))
   
   noisy_deaths %>%
     make.plots(data = dth.dat, ylab = "Number of deaths") %>%
-    orca(paste0(date.data, "_deaths.png"))
+    orca.fn(paste0(date.data, "_deaths.png"))
 }
 # Use withr::with_dir as a workaround becase Orca doesn't support paths to files
 # See: https://github.com/ropensci/plotly/issues/1310#issuecomment-428203982
