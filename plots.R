@@ -1,12 +1,15 @@
 library(lubridate)
 library(plotly)
 
-out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20200724/base_varSens6day_matrices_20200717_deaths"
+out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20201009/NoPrev_shortsero_ifr_60cutoff6day_matrices_20201009_deaths"
+out.dir.orig <- out.dir
+load(file.path(out.dir, "tmp.RData"))
+proj.dir <- "~/real-time-mcmc"
 plot.dir <- "~/COVID/BSU_website_plots/"
+out.dir <- out.dir.orig
 external <- TRUE
 
-load(file.path(out.dir, "tmp.RData"))
-source(file.path(out.dir, "results_api.R"))
+source(file.path(proj.dir, "R/output/results_api.R"))
 
 QUANTILES <- c(0.025, 0.5, 0.975)
 dth.dat <- filter(dth.dat, date <= ymd(date.data) - reporting.delay)
