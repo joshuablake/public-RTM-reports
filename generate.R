@@ -1,14 +1,14 @@
 ## proj.dir <- "~/RTM"
-out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20200731/base_varSens6day_matrices_20200724_deaths"
+out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20201009/NoPrev_shortsero_ifr_60cutoff6day_matrices_20201009_deaths"
 
 load(file.path(out.dir, "tmp.RData"))
-file.loc <- "/project/pandemic_flu/Wuhan_Coronavirus/public-RTM-reports/"
+file.loc <- "~/public-RTM-reports"
 
 wd <- getwd()
 setwd(file.loc)
 external <- TRUE
 index_file <- "iframe.html"
-output_file <- paste0(date.data, ".html")
+output_file <- paste0(lubridate::today(), ".html")
 rmarkdown::render(file.path(proj.dir, 'R/output/report-updated.Rmd'), output_dir = file.loc,
 				  clean = FALSE, intermediates_dir = file.loc,
 				  output_options = list(
