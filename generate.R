@@ -17,6 +17,14 @@ rmarkdown::render(file.path(proj.dir, 'R/output/report-updated.Rmd'), output_dir
 					),
 				  output_file = output_file)
 
+rmarkdown::render(file.path(proj.dir, 'R/output/report-updated.Rmd'), 
+	rmarkdown::html_document(pandoc_args = "--self-contained"),
+				  output_dir = file.loc,
+				  intermediates_dir = file.loc,
+				  output_options = list(
+	mathjax = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
+					),
+				  output_file = "draft-pub.html")
 
 system(paste("rm", index_file))
 system(paste("ln -s", output_file, index_file))

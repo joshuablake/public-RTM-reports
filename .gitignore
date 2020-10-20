@@ -39,3 +39,4 @@ vignettes/*.pdf
 .Renviron
 
 *.swp
+draft-pub.html
