@@ -1,10 +1,10 @@
 library(lubridate)
 library(plotly)
 
-out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20201009/NoPrev_shortsero_ifr_60cutoff6day_matrices_20201009_deaths"
+out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20201025/NoPrev_relax_shortsero_ifr_60cutoff6day_matrices_20201024_deaths"
 out.dir.orig <- out.dir
 load(file.path(out.dir, "tmp.RData"))
-proj.dir <- "~/real-time-mcmc"
+proj.dir <- "~/COVID/real-time-mcmc"
 plot.dir <- "~/COVID/BSU_website_plots/"
 out.dir <- out.dir.orig
 external <- TRUE

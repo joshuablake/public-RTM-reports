@@ -1,26 +1,29 @@
 ## proj.dir <- "~/RTM"
-out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20201009/NoPrev_shortsero_ifr_60cutoff6day_matrices_20201009_deaths"
+new.out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20201025/NoPrev_relax_shortsero_ifr_60cutoff6day_matrices_20201024_deaths"
 
-file.loc <- "~/public-RTM-reports"
-proj.dir <- "~/real-time-mcmc"
-Rfile.loc <- file.path(proj.dir, "R/output")
+new.file.loc <- "~/public-RTM-reports"
+new.proj.dir <- "~/COVID/real-time-mcmc"
+Rfile.loc <- file.path(new.proj.dir, "R/output")
 
 wd <- getwd()
-setwd(file.loc)
+setwd(new.file.loc)
 external <- TRUE
 index_file <- "iframe.html"
 output_file <- paste0(lubridate::today(), ".html")
-rmarkdown::render(file.path(proj.dir, 'R/output/report-updated.Rmd'), output_dir = file.loc,
-				  intermediates_dir = file.loc,
+out.dir <- new.out.dir
+rmarkdown::render(file.path(new.proj.dir, 'R/output/report-updated.Rmd'), output_dir = new.file.loc,
+				  intermediates_dir = new.file.loc,
 				  output_options = list(
 	mathjax = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
 					),
 				  output_file = output_file)
 
-rmarkdown::render(file.path(proj.dir, 'R/output/report-updated.Rmd'), 
+out.dir <- new.out.dir
+Rfile.loc <- file.path(new.proj.dir, "R/output")
+rmarkdown::render(file.path(new.proj.dir, 'R/output/report-updated.Rmd'), 
 	rmarkdown::html_document(pandoc_args = "--self-contained"),
-				  output_dir = file.loc,
-				  intermediates_dir = file.loc,
+				  output_dir = new.file.loc,
+				  intermediates_dir = new.file.loc,
 				  output_options = list(
 	mathjax = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
 					),
