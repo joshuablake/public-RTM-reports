@@ -1,19 +1,20 @@
 library(lubridate)
 library(plotly)
 
-out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20201025/NoPrev_relax_shortsero_ifr_60cutoff6day_matrices_20201024_deaths"
+out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20201030/NoPrev_relax_shortsero_ifr_60cutoff6day_matrices_20201030_deaths"
 out.dir.orig <- out.dir
 load(file.path(out.dir, "tmp.RData"))
 proj.dir.new <- "~/COVID/real-time-mcmc"
 plot.dir <- "~/COVID/BSU_website_plots/"
 out.dir <- out.dir.orig
-external <- TRUE
 
 source(file.path(proj.dir.new, "R/output/results_api.R"))
 source(file.path(proj.dir.new, "R/output/plot_funcs.R"))
 
 orca.fn <- orca
 
+external <- TRUE
+dth.dat <- filter(dth.dat, date <= ymd(date.data) - reporting.delay)
 run.plots <- function() {
   infections %>%
     make.plots(ylab = "Number of infections") %>%
