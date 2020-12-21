@@ -1,5 +1,5 @@
 ## proj.dir <- "~/RTM"
-new.out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/Josh/model_runs/20201208/NoPrev_varySero_exclude_elderly_prev_cm4_ifr_60cutoff_matrices_20201204_deaths/"
+new.out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/Josh/model_runs/20201218/NoPrev_60cutoff_matrices_20201218_timeuse_household_new_base_deaths"
 
 new.file.loc <- "~/public-RTM-reports"
 new.proj.dir <- "~/COVID/real-time-mcmc"
