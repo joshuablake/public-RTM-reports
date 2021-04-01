@@ -1,5 +1,5 @@
 ## proj.dir <- "~/RTM"
-new.out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20210207/NoPrev_IFRlin.bp_ONS60cutoff_11_matrices_20210205_timeuse_household_deaths"
+new.out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/Josh/model_runs/20210326/NoPrev_cm4ons_IFR3bp_ONS60cutoff_25wk2Nick_matrices_20210326_timeuse_household_new_base_deaths"
 
 new.file.loc <- "~/public-RTM-reports"
 new.proj.dir <- "~/COVID/real-time-mcmc"
@@ -11,6 +11,8 @@ external <- TRUE
 index_file <- "iframe.html"
 output_file <- paste0(lubridate::today(), ".html")
 out.dir <- new.out.dir
+load(file.path(out.dir, "tmp.RData"))
+out.dir <- new.out.dir
 
 # Remove warnings
 options(dplyr.summarise.inform = FALSE)
@@ -19,14 +21,18 @@ knitr::opts_chunk$set(
   warning = FALSE
 )
 
-rmarkdown::render(file.path(new.proj.dir, 'R/output/report-updated.Rmd'), output_dir = new.file.loc,
+setwd(new.file.loc)
+rmarkdown::render(file.path(new.proj.dir, 'R/output/report-updated.Rmd'),
+		rmarkdown::html_document(lib_dir = file.path(new.file.loc, "libs"), self_contained = FALSE),
+				  output_dir = new.file.loc,
 				  intermediates_dir = new.file.loc,
 				  output_options = list(
-	mathjax = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
+	mathjax = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML",
 					),
 				  output_file = output_file)
 
 out.dir <- new.out.dir
+setwd(new.file.loc)
 Rfile.loc <- file.path(new.proj.dir, "R/output")
 rmarkdown::render(file.path(new.proj.dir, 'R/output/report-updated.Rmd'), 
 	rmarkdown::html_document(pandoc_args = "--self-contained"),
