@@ -1,7 +1,7 @@
 library(lubridate)
 library(plotly)
 
-out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/Josh/model_runs/20210326/NoPrev_cm4ons_IFR3bp_ONS60cutoff_25wk2Nick_matrices_20210326_timeuse_household_new_base_deaths"
+out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc-dev/model_runs/20210423/Prev354_cm4ons_IFR3bp_ONS60cutoff_25wk2_prev14-5Jamie_matrices_20210423_timeuse_household_deaths/projections_long_endpoint/"
 out.dir.orig <- out.dir
 load(file.path(out.dir, "tmp.RData"))
 proj.dir.new <- "~/COVID/real-time-mcmc"
