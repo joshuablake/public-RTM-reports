@@ -18,7 +18,6 @@ knitr::opts_chunk$set(
   message = FALSE,
   warning = FALSE
 )
-
 rmarkdown::render(file.path(new.proj.dir, 'R/output/report-updated.Rmd'), output_dir = new.file.loc,
 				  intermediates_dir = new.file.loc,
 				  output_options = list(
