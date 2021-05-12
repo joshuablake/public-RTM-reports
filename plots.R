@@ -1,11 +1,11 @@
 library(lubridate)
 library(plotly)
 
-out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc-dev/model_runs/20210423/Prev354_cm4ons_IFR3bp_ONS60cutoff_25wk2_prev14-5Jamie_matrices_20210423_timeuse_household_deaths/projections_long_endpoint/"
+out.dir <- "/rds/user/pjb51/hpc-work/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc-amgs/model_runs/20210507/Prev368_cm4ons_IFR3bp_ONS60cutoff_25wk2_prev14-5Jamie_matrices_20210507_timeuse_household_deaths"
 out.dir.orig <- out.dir
 load(file.path(out.dir, "tmp.RData"))
-proj.dir.new <- "~/COVID/real-time-mcmc"
-plot.dir <- "~/COVID/BSU_website_plots/"
+proj.dir.new <- "/rds/user/pjb51/hpc-work/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc-amgs"
+plot.dir <- "./BSU_website_plots"
 out.dir <- out.dir.orig
 
 source(file.path(proj.dir.new, "R/output/results_api.R"))
