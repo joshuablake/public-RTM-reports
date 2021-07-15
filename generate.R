@@ -1,5 +1,5 @@
 ## proj.dir <- "~/RTM"
-new.out.dir <- "/rds/user/pjb51/hpc-work/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20210619/Prev410_cm6ons_IFR4bp_ONS60cutoff_25wk2_prev14-0PHE_matrices_20210618_timeuse_household_deaths"
+new.out.dir <- "/rds/user/pjb51/hpc-work/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20210712/Prev431_cm6ons_IFR4bp_ONS60cutoff_18wk2_prev14-0PHE_matrices_20210709_timeuse_household_deaths"
 
 new.file.loc <- "/rds/user/pjb51/hpc-work/project/pandemic_flu/Wuhan_Coronavirus/public-RTM-reports"
 new.proj.dir <- "/rds/user/pjb51/hpc-work/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc"
