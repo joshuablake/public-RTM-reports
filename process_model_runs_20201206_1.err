@@ -12,7 +12,21 @@ processing file: ./deaths-report.Rmd
 output file: /rds/user/pjb51/hpc-work/project/pandemic_flu/Wuhan_Coronavirus/public-RTM-reports/report-updated.knit.md
 
 
-Output created: 2021-06-14.html
+Output created: 2021-08-05.html
+Warning messages:
+1: `arrange_()` is deprecated as of dplyr 0.7.0.
+Please use `arrange()` instead.
+See vignette('programming') for more help
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_warnings()` to see where this warning was generated. 
+2: In RColorBrewer::brewer.pal(N, "Set2") :
+  n too large, allowed maximum for palette Set2 is 8
+Returning the palette you asked for with that many colors
+
+3: In RColorBrewer::brewer.pal(N, "Set2") :
+  n too large, allowed maximum for palette Set2 is 8
+Returning the palette you asked for with that many colors
+
 
 
 processing file: report-updated.Rmd
@@ -28,16 +42,11 @@ output file: /rds/user/pjb51/hpc-work/project/pandemic_flu/Wuhan_Coronavirus/pub
 
 Output created: draft-pub.html
 Warning messages:
-1: `arrange_()` is deprecated as of dplyr 0.7.0.
-Please use `arrange()` instead.
-See vignette('programming') for more help
-This warning is displayed once every 8 hours.
-Call `lifecycle::last_warnings()` to see where this warning was generated. 
-2: In RColorBrewer::brewer.pal(N, "Set2") :
+1: In RColorBrewer::brewer.pal(N, "Set2") :
   n too large, allowed maximum for palette Set2 is 8
 Returning the palette you asked for with that many colors
 
-3: In RColorBrewer::brewer.pal(N, "Set2") :
+2: In RColorBrewer::brewer.pal(N, "Set2") :
   n too large, allowed maximum for palette Set2 is 8
 Returning the palette you asked for with that many colors
 
