@@ -12,7 +12,7 @@ processing file: ./deaths-report.Rmd
 output file: /rds/user/pjb51/hpc-work/project/pandemic_flu/Wuhan_Coronavirus/public-RTM-reports/report-updated.knit.md
 
 
-Output created: 2021-09-02.html
+Output created: 2021-09-07.html
 Warning messages:
 1: `arrange_()` is deprecated as of dplyr 0.7.0.
 Please use `arrange()` instead.
