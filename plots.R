@@ -1,15 +1,15 @@
 library(lubridate)
 library(plotly)
 
-out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc-dev/model_runs/20210904/Prev487_cm6ons_ONS60cutoff_IFR5bp_18wk2_prev14-0PHE_matrices_20210903_timeuse_household_deaths"
-out.dir.orig <- out.dir
+out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc-dev/model_runs/20210910_backup/Prev494_cm6ons_ONS60cutoff_IFR5bp_18wk2_prev14-0PHE_matrices_20210910_timeuse_household_deaths_chain2"
+out.dirx <- out.dir
 load(file.path(out.dir, "tmp.RData"))
-proj.dir.new <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc-dev"
+proj.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc-dev"
 plot.dir <- "./BSU_website_plots"
-out.dir <- out.dir.orig
+out.dir <- out.dirx
 
-source(file.path(proj.dir.new, "R/output/results_api.R"))
-source(file.path(proj.dir.new, "R/output/plot_funcs.R"))
+source(file.path(proj.dir, "R/output/results_api.R"))
+source(file.path(proj.dir, "R/output/plot_funcs.R"))
 
 orca.fn <- orca
 

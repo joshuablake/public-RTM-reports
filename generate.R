@@ -1,8 +1,8 @@
 ## proj.dir <- "~/RTM"
-new.out.dir <- "/rds/user/pjb51/hpc-work/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20210904/Prev487_cm6ons_ONS60cutoff_IFR5bp_18wk2_prev14-0PHE_matrices_20210903_timeuse_household_deaths"
+new.out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc-dev/model_runs/20210904/Prev487_cm6ons_ONS60cutoff_IFR5bp_18wk2_prev14-0PHE_matrices_20210910_timeuse_household_deaths"
 
-new.file.loc <- "/rds/user/pjb51/hpc-work/project/pandemic_flu/Wuhan_Coronavirus/public-RTM-reports"
-new.proj.dir <- "/rds/user/pjb51/hpc-work/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc"
+new.file.loc <- "/project/pandemic_flu/Wuhan_Coronavirus/public-RTM-reports"
+new.proj.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc-dev"
 Rfile.loc <- file.path(new.proj.dir, "R/output")
 
 wd <- getwd()
