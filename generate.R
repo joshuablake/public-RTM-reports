@@ -1,9 +1,10 @@
 ## proj.dir <- "~/RTM"
-new.out.dir <- "/rds/user/pjb51/hpc-work/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20210917/Prev501_cm6ons_ONS60cutoff_IFR5bp_18wk2_prev14-0PHE_matrices_20210917_timeuse_household_deaths"
+new.out.dir <- "/scratch/joshuab/20210928"
 
-new.file.loc <- "/rds/user/pjb51/hpc-work/project/pandemic_flu/Wuhan_Coronavirus/public-RTM-reports"
-new.proj.dir <- "/rds/user/pjb51/hpc-work/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc"
+new.file.loc <- "~/COVID/public-RTM-reports"
+new.proj.dir <- "~/COVID/real-time-mcmc"
 Rfile.loc <- file.path(new.proj.dir, "R/output")
+proj.dir <- new.proj.dir
 
 wd <- getwd()
 setwd(new.file.loc)
@@ -13,6 +14,8 @@ output_file <- paste0(lubridate::today(), ".html")
 out.dir <- new.out.dir
 load(file.path(out.dir, "tmp.RData"))
 out.dir <- new.out.dir
+Rfile.loc <- file.path(new.proj.dir, "R/output")
+proj.dir <- new.proj.dir
 
 # Remove warnings
 options(dplyr.summarise.inform = FALSE)
