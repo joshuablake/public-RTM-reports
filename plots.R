@@ -1,12 +1,12 @@
 library(lubridate)
 library(plotly)
 
-out.dir <- "/scratch/joshuab/rtm_for_pub/20211222"
+out.dir <- "/scratch/joshuab/rtm_for_pub/20220225"
 out.dirx <- out.dir
 out.dir.orig <- out.dir
 
 load(file.path(out.dir, "tmp.RData"))
-proj.dir.new <- "~/COVID/real-time-mcmc" ## ~/COVID/real-time-mcmc"
+proj.dir.new <- "/project/pandemic_flu/Josh/real-time-mcmc" ## ~/COVID/real-time-mcmc"
 plot.dir <- "~/COVID/BSU_website_plots"
 out.dir <- out.dirx
 rm(proj.dir)

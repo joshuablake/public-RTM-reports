@@ -1,8 +1,8 @@
 ## proj.dir <- "~/RTM"
-new.out.dir <- "/scratch/joshuab/rtm_for_pub/20211222"
+new.out.dir <- "/scratch/joshuab/rtm_for_pub/20220225"
 
 new.file.loc <- "~/COVID/public-RTM-reports"
-new.proj.dir <- "~/COVID/real-time-mcmc"
+new.proj.dir <- "/project/pandemic_flu/Josh/real-time-mcmc"
 Rfile.loc <- file.path(new.proj.dir, "R/output")
 proj.dir <- new.proj.dir
 
