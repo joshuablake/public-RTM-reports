@@ -1,5 +1,5 @@
 ## proj.dir <- "~/RTM"
-new.out.dir <- "/scratch/joshuab/rtm_for_pub/20220225"
+new.out.dir <- "/scratch/joshuab/rtm_for_pub/20220428"
 
 new.file.loc <- "~/COVID/public-RTM-reports"
 new.proj.dir <- "/project/pandemic_flu/Josh/real-time-mcmc"
