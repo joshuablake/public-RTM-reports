@@ -1,7 +1,7 @@
 library(lubridate)
 library(plotly)
 
-out.dir <- "/scratch/joshuab/rtm_for_pub/20220428"
+out.dir <- "/scratch/joshuab/rtm_for_pub/20220623"
 out.dirx <- out.dir
 out.dir.orig <- out.dir
 
