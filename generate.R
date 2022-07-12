@@ -4,6 +4,7 @@ new.out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_run
 new.file.loc <- "/project/pandemic_flu/Wuhan_Coronavirus/public-RTM-reports"
 new.proj.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc"
 Rfile.loc <- file.path(new.proj.dir, "R/output")
+proj.dir <- new.proj.dir
 
 wd <- getwd()
 setwd(new.file.loc)
@@ -13,6 +14,8 @@ output_file <- paste0(lubridate::today(), ".html")
 out.dir <- new.out.dir
 load(file.path(out.dir, "tmp.RData"))
 out.dir <- new.out.dir
+Rfile.loc <- file.path(new.proj.dir, "R/output")
+proj.dir <- new.proj.dir
 
 # Remove warnings
 options(dplyr.summarise.inform = FALSE)
