@@ -1,7 +1,7 @@
 library(lubridate)
 library(plotly)
 
-out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20220709/Prev794SeroNHSBT_All_ONScutoff_IFR8bp_11wk2_prev14-0PHE_4dose_new_mprior_matrices2_20220708_stable_household_admissions_no_deaths"
+out.dir <- "/scratch/joshuab/rtm_for_pub/20220815"
 out.dirx <- out.dir
 out.dir.orig <- out.dir
 
