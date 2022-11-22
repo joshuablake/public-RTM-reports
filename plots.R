@@ -2,6 +2,7 @@ library(lubridate)
 library(plotly)
 
 out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20221111/Prev918SeroNHSBT_All_NHScutoff_IFR9bp_admissions_only_11wk2_prev14-1PHE_4dose_new_mprior_matrices2_20221104_stable_household_admissions_no_deaths/"
+## out.dir <- "/scratch/joshuab/rtm_for_pub/20220815"
 out.dirx <- out.dir
 out.dir.orig <- out.dir
 
@@ -14,8 +15,9 @@ file.depth <- 5
 source(file.path(proj.dir.new, "R/output/results_api.R"))
 source(file.path(proj.dir.new, "R/output/plot_funcs.R"))
 
-orca.fn <- kaleido
-reticulate::use_miniconda('r-reticulate')
+## reticulate::use_miniconda('r-reticulate')
+## orca.fn <- kaleido
+orca.fn <- orca
 external <- TRUE
 if (external && exists("dth.dat") && !is.null(dth.dat)) {
   dth.dat <- filter(dth.dat, date <= ymd(date.data) - reporting.delay)

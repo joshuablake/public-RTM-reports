@@ -1,5 +1,6 @@
 ## proj.dir <- "~/RTM"
 new.out.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc/model_runs/20221111/Prev918SeroNHSBT_All_NHScutoff_IFR9bp_admissions_only_11wk2_prev14-1PHE_4dose_new_mprior_matrices2_20221104_stable_household_admissions_no_deaths/"
+## new.out.dir <- "/scratch/joshuab/rtm_for_pub/20220815"
 
 new.file.loc <- "/project/pandemic_flu/Wuhan_Coronavirus/public-RTM-reports"
 new.proj.dir <- "/project/pandemic_flu/Wuhan_Coronavirus/real-time-mcmc"
